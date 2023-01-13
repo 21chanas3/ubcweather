@@ -4,5 +4,5 @@
 
 # Scheduling CRON jobs
 - Use `crontab -e`
-- `*/15 * * * * /usr/bin/python3 /path/to/weatherupdater/conditionscript`
-- `0 1 * * * /usr/bin/python3 /path/to/weatherupdater/forecastscript`
+- `*/15 * * * * /path/to/venv /path/to/manage.py getcondition`
+- `0 3 * * * /path/to/venv /path/to/manage.py getforecast`
