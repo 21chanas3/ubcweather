@@ -17,7 +17,8 @@ def get_data(date):
     return arr      
 
 def get_date():
-    ubcTime = datetime.now()
+    tz = pytz.timezone("America/Vancouver")
+    ubcTime = datetime.now(tz)
     return ubcTime
 
 def get_forecast_frame(arr):
