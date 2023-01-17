@@ -5,11 +5,11 @@ from datetime import datetime, timedelta
 import urllib.request
 import math
 from backend.models import Condition, Forecast
-from .secret import dataurl
+import os
 
 def get_data(date):
     dateString = date.strftime('%y%m%d')
-    f = urllib.request.urlopen(dataurl + dateString + "00").read().decode("utf-8")
+    f = urllib.request.urlopen(os.environ['DATA_URL'] + dateString + "00").read().decode("utf-8")
     arr = f.split('\n\n\n')
     arr[0] = arr[0].split("\n",3)[3]
     arr[1] = arr[1].split("\n",1)[1]
