@@ -1,30 +1,36 @@
 <script>
-	export let name;
+	import { onMount } from "svelte";
+	import CurrentConditions from './components/CurrentConditions.svelte'
+    import TemperatureChart from "./components/TemperatureChart.svelte";
+
+	let cur_condition;
+	let past_conditions;
+
+	async function getCurrentConditions() {
+		let resp = await fetch("/api/current").then((res) => res.json());
+		cur_condition = JSON.stringify(resp);
+		cur_condition = JSON.parse(cur_condition);
+	}
+
+	async function getPastConditions() {
+		let resp = await fetch("/api/current").then((res) => res.json());
+		cur_condition = JSON.stringify(resp);
+		cur_condition = JSON.parse(cur_condition);
+	}
+    
+    onMount(getCurrentConditions);
+	onMount(getPastConditions);
 </script>
 
 <main>
-	<h1>Hello {name}!</h1>
-	<p>Visit the <a href="https://svelte.dev/tutorial">Svelte tutorial</a> to learn how to build Svelte apps.</p>
+	<CurrentConditions {cur_condition}/>
+	<TemperatureChart {past_conditions}/>
 </main>
 
+<svelte:head>
+	<script src="https://cdn.tailwindcss.com"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css">
+</svelte:head>
+
 <style>
-	main {
-		text-align: center;
-		padding: 1em;
-		max-width: 240px;
-		margin: 0 auto;
-	}
-
-	h1 {
-		color: #ff3e00;
-		text-transform: uppercase;
-		font-size: 4em;
-		font-weight: 100;
-	}
-
-	@media (min-width: 640px) {
-		main {
-			max-width: none;
-		}
-	}
 </style>

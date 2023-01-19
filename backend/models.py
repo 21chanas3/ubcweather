@@ -3,7 +3,7 @@ from pytz import timezone
 
 class Forecast(models.Model):
     creation_time = models.DateTimeField('Forecast Creation Time')
-    prediction_time = models.DateTimeField('Forecast Datetime', primary_key=True)
+    prediction_time = models.DateTimeField('Forecast Datetime', unique=True)
     mean_air_temp = models.FloatField('Mean Air Temperature')
     max_air_temp = models.FloatField('Max Air Temperature')
     min_air_temp = models.FloatField('Min Air Temperature')
@@ -31,7 +31,7 @@ class Forecast(models.Model):
         return self.creation_time.astimezone(tz).strftime('%Y-%m-%d %H:%M') + " | " + self.prediction_time.astimezone(tz).strftime('%Y-%m-%d %H:%M')
 
 class Condition(models.Model):
-    time = models.DateTimeField('Datetime', primary_key=True)
+    time = models.DateTimeField('Datetime', unique=True)
     air_temp = models.FloatField("Air Temperature")
     l_precip_rate = models.FloatField("Liquid Precipitation Rate")
     wind_speed = models.FloatField("Wind Speed")
