@@ -41,7 +41,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'django_cron',
     'backend.apps.BackendConfig',
-    'spa.apps.SpaConfig'
 ]
 
 MIDDLEWARE = [
